@@ -13,7 +13,7 @@ namespace JsonTransformer.Tests
 
         public FieldValueConverterTests()
         {
-            testData = JsonConvert.DeserializeObject<JObject>(File.ReadAllText(@"Assets\first.json"));
+            testData = JsonConvert.DeserializeObject<JObject>(File.ReadAllText(@"Data\data.json"));
         }
 
         [Fact]
