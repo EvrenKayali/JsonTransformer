@@ -2,6 +2,12 @@
 
 Process and transform your JSON in a fluent way.
 
+## Nuget
+
+```
+Install-Package JsonTransformer
+```
+
 ## JSON before transformation
 
 ```json
