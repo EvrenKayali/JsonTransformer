@@ -69,8 +69,6 @@ Process and transform your JSON in a fluent way.
                      .Name("scOTTerms")
                      .Converter<SplitedIntArrayFieldConverter>());
 
-
-
             Transformer transformer = new Transformer(mappings);
            
             var transformedObj =  transformer.Transform(testData);
