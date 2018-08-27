@@ -84,5 +84,46 @@
 
             isAllPathsExist.ShouldBeTrue();
         }
+
+        [Fact]
+        public void IntValueConverter()
+        {
+            var mappings = new FieldMappings();
+
+            mappings
+             .Field(f => f
+                    .Name("parentID")
+                    .Converter<IntFieldConverter>());
+
+            var transformer = new Transformer(mappings);
+
+            var transformedObject = transformer.Transform(testData);
+
+            var id = transformedObject["parentID"].ToObject<int>();
+
+            id.ShouldBe(14735);
+        }
+
+        [Fact]
+        public void ObjValueConverter()
+        {
+            var mappings = new FieldMappings();
+
+            mappings
+             .Field(f => f
+                    .Name("objectField")
+                    .Converter<JObjectFieldConverter>());
+
+            var transformer = new Transformer(mappings);
+
+            var transformedObject = transformer.Transform(testData);
+
+            var nestedObject = transformedObject["objectField"].ToObject<JObject>();
+
+            var nestedObjectFirstField = nestedObject.Properties().FirstOrDefault();
+
+            nestedObjectFirstField.Name.ShouldBe("generalCapability");
+            nestedObjectFirstField.Value.ShouldBe("15");
+        }
     }
 }

@@ -47,7 +47,9 @@
     <Compile Include="FieldMappings.cs" />
     <Compile Include="FieldDefination.cs" />
     <Compile Include="FieldValueConverters\IFieldValueConverter.cs" />
+    <Compile Include="FieldValueConverters\IntFieldConverter.cs" />
     <Compile Include="FieldValueConverters\JArrayFieldConverter.cs" />
+    <Compile Include="FieldValueConverters\JObjectFieldConverter.cs" />
     <Compile Include="FieldValueConverters\SplitedIntArrayFieldConverter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Transformer.cs" />

@@ -26,6 +26,9 @@
   "generalCapabilities": {
     "#cdata-section": "[{\"generalCapability\":\"Personal and Social Capability\",\"element\":\"Social management\",\"subElement\":\"Communicate effectively\"},{\"generalCapability\":\"Literacy\",\"element\":\"Comprehending texts through listening, reading and viewing\",\"subElement\":\"Listen and respond to learning area texts\"},{\"generalCapability\":\"Personal and Social Capability\",\"element\":\"Social awareness\",\"subElement\":\"Understand relationships\"},{\"generalCapability\":\"Literacy\",\"element\":\"Word Knowledge\",\"subElement\":\"Understand learning area vocabulary\"},{\"generalCapability\":\"Literacy\",\"element\":\"Composing texts through speaking, writing and creating\",\"subElement\":\"Use language to interact with others\"},{\"generalCapability\":\"Literacy\",\"element\":\"Comprehending texts through listening, reading and viewing\",\"subElement\":\"Comprehend texts\"},{\"generalCapability\":\"Personal and Social Capability\",\"element\":\"Self-management\",\"subElement\":\"Express emotions appropriately\"},{\"generalCapability\":\"Intercultural Understanding\",\"element\":\"Recognising culture and developing respect\",\"subElement\":\"Investigate culture and cultural identity\"}]"
   },
+  "objectField": {
+    "#cdata-section": "{\"generalCapability\":\"15\",\"element\":\"Social management\",\"subElement\":\"Communicate effectively\"}"
+  },
   "subStrand": {
     "#cdata-section": "Language for interaction"
   },
