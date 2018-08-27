@@ -24,12 +24,16 @@
             {
                 var cleanName = CleanPrefix(prop.Name);
                 var cleanProperty = CleanCData(prop);
+                var isfieldProcessed = false;
 
                 if (mappings != null)
                 {
                     if (mappings.ExcludedFields.Any(p => p == cleanName)) continue;
 
-                    AddTransformedFields(newJobj, mappings.FieldDefinitions, cleanName, prop.Value);
+                    isfieldProcessed = 
+                        AddTransformedField(newJobj, mappings.FieldDefinitions, cleanName, prop.Value);
+
+                    if (isfieldProcessed) continue;
                 }
 
                 var isPropertyNameAddedAsTransformedField = newJobj.Properties().Any(p => p.Name == cleanName);
@@ -66,8 +70,10 @@
             return prop;
         }
 
-        private void AddTransformedFields(JObject obj, IEnumerable<FieldDefinition> definitions, string fieldName, JToken value)
+        private bool AddTransformedField(JObject obj, IEnumerable<FieldDefinition> definitions, string fieldName, JToken value)
         {
+            var isFieldProcessed = false;
+
             var defs = definitions.Where(a => a.FieldName == fieldName);
 
             if (defs.Any())
@@ -85,8 +91,13 @@
                     }
 
                     obj.Add(fieldName, value);
+                    isFieldProcessed = true;
                 }
+
+                return isFieldProcessed;
             }
+
+            return isFieldProcessed;
         }
     }
 }
