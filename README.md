@@ -1,8 +1,8 @@
-## Json Transformer
+# Json Transformer
 
 Process and transform your JSON files in a fluent way.
 
-# JSON before transformation
+## JSON before transformation
 
 ```json
 {
