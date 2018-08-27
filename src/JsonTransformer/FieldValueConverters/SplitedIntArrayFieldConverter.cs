@@ -1,8 +1,8 @@
-﻿using Newtonsoft.Json.Linq;
-using System;
-
-namespace JsonTransformer.FieldValueConverters
+﻿namespace JsonTransformer.FieldValueConverters
 {
+    using Newtonsoft.Json.Linq;
+    using System;
+
     public class SplitedIntArrayFieldConverter : IFieldValueConverter
     {
         public JToken Convert(JToken value)

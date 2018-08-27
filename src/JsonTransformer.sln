@@ -5,7 +5,7 @@ VisualStudioVersion = 15.0.28010.2003
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonTransformer", "JsonTransformer\JsonTransformer.csproj", "{48A06482-264F-4F2C-B1AC-EA55CE5C763F}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "JsonTransformer.Tests", "JsonTransformer.Tests\JsonTransformer.Tests.csproj", "{B81AF3B4-CB77-445A-A3C4-AA87682158BB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "JsonTransformer.Tests", "JsonTransformer.Tests\JsonTransformer.Tests.csproj", "{038461FE-A8EB-4F93-B51C-08BDE3F7C7F9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +17,10 @@ Global
 		{48A06482-264F-4F2C-B1AC-EA55CE5C763F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{48A06482-264F-4F2C-B1AC-EA55CE5C763F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{48A06482-264F-4F2C-B1AC-EA55CE5C763F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{B81AF3B4-CB77-445A-A3C4-AA87682158BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{B81AF3B4-CB77-445A-A3C4-AA87682158BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{B81AF3B4-CB77-445A-A3C4-AA87682158BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{B81AF3B4-CB77-445A-A3C4-AA87682158BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{038461FE-A8EB-4F93-B51C-08BDE3F7C7F9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{038461FE-A8EB-4F93-B51C-08BDE3F7C7F9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{038461FE-A8EB-4F93-B51C-08BDE3F7C7F9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{038461FE-A8EB-4F93-B51C-08BDE3F7C7F9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

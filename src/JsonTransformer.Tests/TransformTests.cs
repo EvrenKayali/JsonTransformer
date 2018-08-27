@@ -1,11 +1,12 @@
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System.IO;
-using System.Linq;
-using Xunit;
-
-namespace JsonTransformer.Tests
+﻿namespace JsonTransformer.Tests
 {
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
+    using Shouldly;
+    using System.IO;
+    using System.Linq;
+    using Xunit;
+
     public class TransformTests
     {
         JObject testData;
@@ -16,41 +17,29 @@ namespace JsonTransformer.Tests
         }
 
         [Fact]
-        public void AllTypesShouldBeJObject()
+        public void AllPropertiesShouldBeConvertedIfThereIsNoExcludedProperties()
         {
-            var transformer = new Transformer();
-
-            var actual = transformer.Transform(testData);
-            Assert.IsType<JObject>(testData);
-            Assert.IsType<JObject>(actual);
-
-
-        }
-
-        [Fact]
-        public void AllPropertiesShouldShouldBeConvertedIfThereIsNoExcludedProperties()
-        {
-            var transformer = new Transformer();
+            Transformer transformer = new Transformer();
 
             var transformedObject = transformer.Transform(testData);
             var actual = transformedObject.Properties().Count();
             var expected = testData.Properties().Count();
-            
-            Assert.Equal(expected, actual);
 
+            actual.ShouldBe(expected);
         }
-        
-        [Fact]
-        public void AllPrefixesShuldBeCleanedFromProperties()
-        {
-            var transformer = new Transformer();
 
+        [Fact]
+        public void AllPrefixesShouldBeCleanedFromProperties()
+        {
+            var countBeforeTransform = testData.Properties().Count(p => p.Name.StartsWith("@"));
+
+            var transformer = new Transformer();
             var transformedObject = transformer.Transform(testData);
 
-            var actual = transformedObject.Properties().Count(p => p.Name.StartsWith("@"));
-            var expected = 0;
+            var countAfterTransform = transformedObject.Properties().Count(p => p.Name.StartsWith("@"));
 
-            Assert.Equal(expected, actual);
+            countBeforeTransform.ShouldBeGreaterThan(0);
+            countAfterTransform.ShouldBe(0);
         }
 
         [Fact]
@@ -60,11 +49,11 @@ namespace JsonTransformer.Tests
 
             var transformedObject = transformer.Transform(testData);
 
-            var actual = transformedObject.Properties()
+            var isThereAnyCDataField = transformedObject.Properties()
                 .Any(p => p.Value.HasValues && p.Value.First.ToObject<JProperty>().Name == "#cdata-section");
-             
 
-            Assert.False(actual);
+
+            isThereAnyCDataField.ShouldBeFalse();
         }
 
         [Fact]
@@ -89,18 +78,21 @@ namespace JsonTransformer.Tests
         {
             var mappings = new FieldMappings();
             mappings
-                .Field(f => f
+                    .Field(f => f
                     .Name("nodeTypeAlias")
                     .WithTransformName("alias"));
-
 
             var transformer = new Transformer(mappings);
             var transformedObject = transformer.Transform(testData);
 
-            var actual = transformedObject.Properties()
-                .Any(p => p.Name == "alias" || p.Name != "nodeTypeAlias");
+            var isFieldsWithTransformNameExist = transformedObject.Properties()
+                                                                  .Any(p => p.Name == "alias");
 
-            Assert.True(actual);
+            var isTransformedFieldRemoved = !transformedObject.Properties()
+                                                             .Any(p => p.Name == "nodeTypeAlias");
+
+            isFieldsWithTransformNameExist.ShouldBeTrue();
+            isTransformedFieldRemoved.ShouldBeTrue();
         }
     }
 }

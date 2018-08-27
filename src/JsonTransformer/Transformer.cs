@@ -1,21 +1,20 @@
-﻿using Newtonsoft.Json.Linq;
-using System.Collections.Generic;
-using System.Linq;
-
-namespace JsonTransformer
+﻿namespace JsonTransformer
 {
+    using Newtonsoft.Json.Linq;
+    using System.Collections.Generic;
+    using System.Linq;
+
     public class Transformer
     {
         private readonly FieldMappings mappings;
 
-        public Transformer()
-        {
+        public Transformer() {}
 
-        }
         public Transformer(FieldMappings mappings)
         {
             this.mappings = mappings;
         }
+
         public JObject Transform(JObject json)
         {
             var properties = json.Properties();
@@ -43,6 +42,7 @@ namespace JsonTransformer
 
             return newJobj;
         }
+
         protected virtual string CleanPrefix(string propName)
         {
             if (propName.StartsWith("@"))
@@ -52,6 +52,7 @@ namespace JsonTransformer
 
             return propName;
         }
+
         protected virtual JProperty CleanCData(JProperty prop)
         {
             bool isCData;

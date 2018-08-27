@@ -1,9 +1,10 @@
-﻿using JsonTransformer.FieldValueConverters;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System.IO;
-namespace JsonTransformer.Tests
+﻿namespace JsonTransformer.Tests
 {
+    using JsonTransformer.FieldValueConverters;
+    using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
+    using Shouldly;
+    using System.IO;
     using System.Linq;
     using Xunit;
 
@@ -29,12 +30,9 @@ namespace JsonTransformer.Tests
 
             var transformedObject = transformer.Transform(testData);
 
-            var actual = transformedObject["generalCapabilities"].Value<JArray>().Count;
+            var generalCapabiltyCount = transformedObject["generalCapabilities"].Value<JArray>().Count;
 
-            var expected = 8;
-
-            Assert.Equal(expected, actual);
-                    
+            generalCapabiltyCount.ShouldBe(8);
         }
 
         [Fact]
@@ -51,11 +49,10 @@ namespace JsonTransformer.Tests
 
             var transformedObject = transformer.Transform(testData);
             var arr = transformedObject["path"].ToObject<int[]>();
-          
-            var actual = arr[0];
-            var expected = -1;
 
-            Assert.Equal(expected, actual);
+            var firstElementOfConvertedArray = arr[0];
+
+            firstElementOfConvertedArray.ShouldBe(-1);
         }
 
         [Fact]
@@ -64,7 +61,7 @@ namespace JsonTransformer.Tests
             var mappings = new FieldMappings();
 
             mappings
-             .Field(f=> f
+             .Field(f => f
                     .Name("path"))
              .Field(f => f
                     .Name("path")
@@ -83,9 +80,9 @@ namespace JsonTransformer.Tests
             var isIntPathExist = transformedObject.Properties().Any(p => p.Name == "intPath");
             var isStringPathExist = transformedObject.Properties().Any(p => p.Name == "stringPath");
 
-            var actual = isPathExist && isIntPathExist && isStringPathExist;
-            
-            Assert.True(actual);
+            var isAllPathsExist = isPathExist && isIntPathExist && isStringPathExist;
+
+            isAllPathsExist.ShouldBeTrue();
         }
     }
 }
