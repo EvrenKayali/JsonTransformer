@@ -1,6 +1,6 @@
 # Json Transformer
 
-Process and transform your JSON files in a fluent way.
+Process and transform your JSON in a fluent way.
 
 ## JSON before transformation
 
