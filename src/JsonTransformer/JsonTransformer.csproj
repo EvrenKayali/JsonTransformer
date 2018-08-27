@@ -53,6 +53,7 @@
     <Compile Include="Transformer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="JsonTransformer.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup />
