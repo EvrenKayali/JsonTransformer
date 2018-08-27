@@ -41,6 +41,40 @@ Process and transform your JSON in a fluent way.
   }
 }
 ```
+## Usage
+  ```csharp
+    var mappings = new FieldMappings();
+            mappings
+                .ExcludeField("creatorID")
+                .ExcludeField("key")
+                .ExcludeField("isDoc")
+                .ExcludeField("template")
+                .Field(f => f
+                     .Name("id")
+                     .Converter<IntFieldConverter>())
+                .Field(f => f
+                     .Name("parentID")
+                     .Converter<IntFieldConverter>())
+                .Field(f => f
+                     .Name("generalCapabilities")
+                     .WithTransformName("capabilities")
+                     .Converter<JArrayFieldConverter>())
+                .Field(f => f
+                    .Name("path")
+                    .Converter<SplitedIntArrayFieldConverter>())
+                .Field(f => f
+                     .Name("tags")
+                     .Converter<SplitedIntArrayFieldConverter>())
+                .Field(f => f
+                     .Name("scOTTerms")
+                     .Converter<SplitedIntArrayFieldConverter>());
+
+
+
+            Transformer transformer = new Transformer(mappings);
+           
+            var transformedObj =  transformer.Transform(testData);
+  ```
 ## Transformed JSON
 
 ```json
